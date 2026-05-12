@@ -1,5 +1,5 @@
 ﻿campaign_id,campaign_name,channel,lead_count,valid_lead_count,hot_lead_count,conversion_count,conversion_rate,data_quality_issue_count
-CAMP001,SaaS Growth Webinar,webinar,3,2,2,2,1.0,2
+CAMP001,SaaS Growth Webinar,webinar,3,1,1,2,2.0,3
 CAMP002,Finance Paid Search,paid_ads,3,1,1,2,2.0,3
 CAMP003,Healthcare Newsletter,email,3,3,0,0,0.0,1
 CAMP004,Enterprise Field Event,event,2,2,0,0,0.0,3

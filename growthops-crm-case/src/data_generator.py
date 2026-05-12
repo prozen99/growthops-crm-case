@@ -53,7 +53,16 @@ def generate_dummy_data() -> None:
     )
 
     bot_events = pd.DataFrame(
-        [[f"EBOT{i:02d}", "L011", "CAMP001", "link_click", f"2026-05-07 09:{i:02d}:00"] for i in range(16)],
+        [
+            [
+                f"EBOT{i:02d}",
+                "L011",
+                "CAMP001",
+                "link_click",
+                f"2026-05-07 09:{i // 2:02d}:{'30' if i % 2 else '00'}",
+            ]
+            for i in range(16)
+        ],
         columns=events.columns,
     )
     events = pd.concat([events, bot_events], ignore_index=True)

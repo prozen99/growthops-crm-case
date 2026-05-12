@@ -44,6 +44,10 @@ growthops-crm-case/
   data/
     raw/
     processed/
+  docs/
+    validation-summary.md
+    scoring-rules.md
+    data-quality-rules.md
   tests/
     test_quality_validator.py
     test_scorer.py
@@ -89,7 +93,13 @@ Manual Review가 아닌 리드는 기본 10점에서 시작합니다. 행동 이
 - `data/processed/campaign_metrics.csv`: 캠페인별 리드 수, 유효 리드 수, Hot 리드 수, 전환 수, 전환율, 품질 이슈 수
 - `data/processed/data_quality_report.csv`: 품질 이슈 유형별 건수, 심각도, 샘플 ID
 
-## 8. 확장 가능성
+## 8. 제출용 설명 문서
+
+- [검증 결과 요약](docs/validation-summary.md)
+- [리드 스코어링 규칙](docs/scoring-rules.md)
+- [데이터 품질 검증 규칙](docs/data-quality-rules.md)
+
+## 9. 확장 가능성
 
 - FastAPI 결과 조회 API
 - 대시보드

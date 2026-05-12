@@ -3,11 +3,11 @@ L001,alice@alpha.com,Alpha SaaS,100,Hot,"기본 정상 리드 점수, 이메일 
 L002,bob@betafinance.com,Beta Finance,100,Hot,"기본 정상 리드 점수, 이메일 오픈, 링크 클릭, 랜딩 페이지 방문, 최근 30일 이벤트 3건, 계약 전환, 중견 기업 규모, 의사결정권자 직무, 우선순위 산업군, 고예산 캠페인 유입, 고관여 채널 유입 근거로 Hot Lead로 분류됨",영업 담당자가 24시간 내 직접 연락,VALID
 L003,cara@clinicplus.com,Clinic Plus,47,Warm,"기본 정상 리드 점수, 이메일 오픈, 최근 30일 이벤트 1건, 중견 기업 규모, 의사결정권자 직무, 우선순위 산업군 근거로 Warm Lead로 분류됨",마케팅 nurture 이메일 발송 후 3일 내 재확인,VALID
 L004,dave@smallco.com,SmallCo,22,Cold,"기본 정상 리드 점수, 랜딩 페이지 방문, 최근 30일 이벤트 1건 근거로 Cold Lead로 분류됨",장기 육성 캠페인에 포함,VALID
-L005,,No Email Inc,0,Manual Review,이메일 누락로 자동 점수 계산에서 제외됨,데이터 품질 확인 후 수동 검토,REVIEW_REQUIRED
-L006,dup@example.com,Dup One,0,Manual Review,동일 이메일 중복로 자동 점수 계산에서 제외됨,데이터 품질 확인 후 수동 검토,REVIEW_REQUIRED
-L007,dup@example.com,Dup Two,0,Manual Review,동일 이메일 중복로 자동 점수 계산에서 제외됨,데이터 품질 확인 후 수동 검토,REVIEW_REQUIRED
+L005,,No Email Inc,0,Manual Review,이메일 누락 사유로 자동 점수 계산에서 제외됨,데이터 품질 확인 후 수동 검토,REVIEW_REQUIRED
+L006,dup@example.com,Dup One,0,Manual Review,동일 이메일 중복 사유로 자동 점수 계산에서 제외됨,데이터 품질 확인 후 수동 검토,REVIEW_REQUIRED
+L007,dup@example.com,Dup Two,0,Manual Review,동일 이메일 중복 사유로 자동 점수 계산에서 제외됨,데이터 품질 확인 후 수동 검토,REVIEW_REQUIRED
 L008,eve@samecorp.com,Same Corp,20,Cold,"기본 정상 리드 점수, 최근 이벤트 없음, 대기업 규모, 의사결정권자 직무, 고예산 캠페인 유입, 캠페인 UTM 누락 근거로 Cold Lead로 분류됨",장기 육성 캠페인에 포함,VALID
 L009,frank@samecorp.com,Same Corp,20,Cold,"기본 정상 리드 점수, 최근 이벤트 없음, 대기업 규모, 의사결정권자 직무, 고예산 캠페인 유입, 캠페인 UTM 누락 근거로 Cold Lead로 분류됨",장기 육성 캠페인에 포함,VALID
-L010,ghost@badref.com,Ghost Ref,0,Manual Review,캠페인 참조 오류로 자동 점수 계산에서 제외됨,데이터 품질 확인 후 수동 검토,REVIEW_REQUIRED
-L011,bot@traffic.com,Traffic Bot LLC,85,Hot,"기본 정상 리드 점수, 링크 클릭, 최근 30일 이벤트 16건, 대기업 규모, 의사결정권자 직무, 우선순위 산업군, 고예산 캠페인 유입, 고관여 채널 유입 근거로 Hot Lead로 분류됨",영업 담당자가 24시간 내 직접 연락,VALID
+L010,ghost@badref.com,Ghost Ref,0,Manual Review,캠페인 참조 오류 사유로 자동 점수 계산에서 제외됨,데이터 품질 확인 후 수동 검토,REVIEW_REQUIRED
+L011,bot@traffic.com,Traffic Bot LLC,0,Manual Review,짧은 시간 내 과도한 이벤트 발생 사유로 자동 점수 계산에서 제외됨,데이터 품질 확인 후 수동 검토,REVIEW_REQUIRED
 L012,nina@quiet.com,Quiet Co,0,Cold,"기본 정상 리드 점수, 최근 이벤트 없음 근거로 Cold Lead로 분류됨",장기 육성 캠페인에 포함,VALID

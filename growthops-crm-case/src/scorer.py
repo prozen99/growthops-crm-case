@@ -38,7 +38,7 @@ def _manual_review_reason(issue_types: list[str]) -> str:
         "suspicious_bot_behavior": "짧은 시간 내 과도한 이벤트 발생",
     }
     reasons = [labels[issue] for issue in labels if issue in issue_types]
-    return f"{' 및 '.join(reasons)}로 자동 점수 계산에서 제외됨"
+    return f"{' 및 '.join(reasons)} 사유로 자동 점수 계산에서 제외됨"
 
 
 def score_leads(
