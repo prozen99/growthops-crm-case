@@ -1,6 +1,8 @@
 # GrowthOps CRM Case Project
 
-Python + CSV 기반 CRM 데이터 파이프라인 MVP입니다. 더미데이터 생성부터 데이터 품질 검증, 규칙 기반 리드 스코어링, 캠페인 성과 지표 산출까지 한 번에 실행됩니다.
+마케팅/CRM 데이터를 기반으로 리드 후속 대응 우선순위를 산정하는 Python + CSV 기반 데이터 파이프라인 MVP입니다. 완성형 CRM SaaS가 아니라, 더미데이터 생성부터 데이터 품질 검증, 규칙 기반 리드 스코어링, 캠페인 성과 지표 산출까지 재현 가능하게 실행되는 제출용 프로젝트입니다.
+
+이 프로젝트는 데이터 품질 이슈가 있는 리드를 자동 계산 대상과 수동 검토 대상으로 구분합니다. FastAPI는 핵심 파이프라인이 아니라, 산출된 CSV 결과를 조회하기 위한 선택 확장 기능입니다.
 
 ## 1. 프로젝트 목적
 
@@ -22,7 +24,7 @@ python src/main.py
 테스트 실행:
 
 ```bash
-pytest
+pytest -q
 ```
 
 ## 4. 폴더 구조
@@ -50,6 +52,7 @@ growthops-crm-case/
     scoring-rules.md
     data-quality-rules.md
     final-report.md
+    submission-checklist.md
   tests/
     conftest.py
     test_api.py
@@ -127,6 +130,7 @@ uvicorn src.api:app --reload
 - [리드 스코어링 규칙](docs/scoring-rules.md)
 - [데이터 품질 검증 규칙](docs/data-quality-rules.md)
 - [최종 해설 보고서](docs/final-report.md)
+- [제출 전 체크리스트](docs/submission-checklist.md)
 
 ## 10. 확장 가능성
 

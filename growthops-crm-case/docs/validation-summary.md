@@ -4,15 +4,15 @@
 
 - OS: Windows
 - Python: 3.12.10
-- 실행 위치: `C:\Users\admin\PycharmProjects\portfolio\growthops-crm-case`
-- 주요 의존성: `pandas`, `pytest`
+- 실행 위치: `growthops-crm-case/`
+- 주요 의존성: `pandas`, `pytest`, `fastapi`, `uvicorn`, `httpx`
 
 ## 실행 명령어
 
 ```bash
 pip install -r requirements.txt
 python src/main.py
-pytest
+pytest -q
 ```
 
 `python src/main.py` 실행 시 더미데이터 생성, CSV 로딩, 정제, 품질 검증, 리드 스코어링, 캠페인 지표 계산, 결과 저장이 한 번에 수행된다.
