@@ -11,6 +11,23 @@ ACTION_BY_GRADE = {
     "Manual Review": "데이터 품질 확인 후 수동 검토",
 }
 
+EVENT_SCORE_RULES = {
+    "email_open": (5, "이메일 오픈"),
+    "link_click": (10, "링크 클릭"),
+    "landing_visit": (10, "랜딩 페이지 방문"),
+    "webinar_signup": (20, "웨비나 신청"),
+    "demo_request": (30, "데모 요청"),
+}
+
+CONVERSION_SCORE_RULES = {
+    "consultation_request": (25, "상담 요청"),
+    "contract": (40, "계약 전환"),
+    "purchase": (50, "구매 전환"),
+}
+
+PRIORITY_JOB_KEYWORDS = ["Head", "Director", "Manager", "CTO", "CEO"]
+PRIORITY_INDUSTRIES = {"SaaS", "Finance", "Healthcare"}
+
 
 def grade_score(score: int, is_manual_review: bool = False) -> str:
     if is_manual_review:
@@ -39,6 +56,73 @@ def _manual_review_reason(issue_types: list[str]) -> str:
     }
     reasons = [labels[issue] for issue in labels if issue in issue_types]
     return f"{' 및 '.join(reasons)} 사유로 자동 점수 계산에서 제외됨"
+
+
+def _apply_event_scores(
+    score: int,
+    reason_parts: list[str],
+    lead_events: pd.DataFrame,
+    recent_cutoff: pd.Timestamp,
+) -> int:
+    event_types = set(lead_events["event_type"])
+    for event_type, (points, label) in EVENT_SCORE_RULES.items():
+        if event_type in event_types:
+            score += points
+            reason_parts.append(label)
+
+    recent_event_count = len(lead_events[lead_events["event_time"].ge(recent_cutoff)])
+    if recent_event_count:
+        recent_points = min(recent_event_count * 2, 20)
+        score += recent_points
+        reason_parts.append(f"최근 30일 이벤트 {recent_event_count}건")
+    else:
+        score -= 10
+        reason_parts.append("최근 이벤트 없음")
+    return score
+
+
+def _apply_conversion_scores(score: int, reason_parts: list[str], lead_conversions: pd.DataFrame) -> int:
+    conversion_types = set(lead_conversions["conversion_type"])
+    for conversion_type, (points, label) in CONVERSION_SCORE_RULES.items():
+        if conversion_type in conversion_types:
+            score += points
+            reason_parts.append(label)
+    return score
+
+
+def _apply_profile_scores(score: int, reason_parts: list[str], lead: pd.Series) -> int:
+    if lead["company_size"] in {"Enterprise", "1000+"}:
+        score += 15
+        reason_parts.append("대기업 규모")
+    elif lead["company_size"] in {"Mid-Market", "200-999"}:
+        score += 10
+        reason_parts.append("중견 기업 규모")
+
+    title = lead["job_title"].lower()
+    if any(keyword.lower() in title for keyword in PRIORITY_JOB_KEYWORDS):
+        score += 10
+        reason_parts.append("의사결정권자 직무")
+
+    if lead["industry"] in PRIORITY_INDUSTRIES:
+        score += 10
+        reason_parts.append("우선순위 산업군")
+    return score
+
+
+def _apply_campaign_scores(score: int, reason_parts: list[str], campaign: dict) -> int:
+    if not campaign:
+        return score
+
+    if campaign["budget"] >= 10000:
+        score += 5
+        reason_parts.append("고예산 캠페인 유입")
+    if campaign["channel"] in {"webinar", "paid_ads"}:
+        score += 5
+        reason_parts.append("고관여 채널 유입")
+    if campaign["utm_code"] == "":
+        score -= 10
+        reason_parts.append("캠페인 UTM 누락")
+    return score
 
 
 def score_leads(
@@ -79,66 +163,10 @@ def score_leads(
 
         score = 10
         reason_parts = ["기본 정상 리드 점수"]
-        event_types = set(lead_events["event_type"])
-        conversion_types = set(lead_conversions["conversion_type"])
-
-        event_score_rules = {
-            "email_open": (5, "이메일 오픈"),
-            "link_click": (10, "링크 클릭"),
-            "landing_visit": (10, "랜딩 페이지 방문"),
-            "webinar_signup": (20, "웨비나 신청"),
-            "demo_request": (30, "데모 요청"),
-        }
-        for event_type, (points, label) in event_score_rules.items():
-            if event_type in event_types:
-                score += points
-                reason_parts.append(label)
-
-        recent_event_count = len(lead_events[lead_events["event_time"].ge(recent_cutoff)])
-        if recent_event_count:
-            recent_points = min(recent_event_count * 2, 20)
-            score += recent_points
-            reason_parts.append(f"최근 30일 이벤트 {recent_event_count}건")
-        else:
-            score -= 10
-            reason_parts.append("최근 이벤트 없음")
-
-        conversion_score_rules = {
-            "consultation_request": (25, "상담 요청"),
-            "contract": (40, "계약 전환"),
-            "purchase": (50, "구매 전환"),
-        }
-        for conversion_type, (points, label) in conversion_score_rules.items():
-            if conversion_type in conversion_types:
-                score += points
-                reason_parts.append(label)
-
-        if lead["company_size"] in {"Enterprise", "1000+"}:
-            score += 15
-            reason_parts.append("대기업 규모")
-        elif lead["company_size"] in {"Mid-Market", "200-999"}:
-            score += 10
-            reason_parts.append("중견 기업 규모")
-
-        title = lead["job_title"].lower()
-        if any(keyword.lower() in title for keyword in ["Head", "Director", "Manager", "CTO", "CEO"]):
-            score += 10
-            reason_parts.append("의사결정권자 직무")
-
-        if lead["industry"] in {"SaaS", "Finance", "Healthcare"}:
-            score += 10
-            reason_parts.append("우선순위 산업군")
-
-        if campaign:
-            if campaign["budget"] >= 10000:
-                score += 5
-                reason_parts.append("고예산 캠페인 유입")
-            if campaign["channel"] in {"webinar", "paid_ads"}:
-                score += 5
-                reason_parts.append("고관여 채널 유입")
-            if campaign["utm_code"] == "":
-                score -= 10
-                reason_parts.append("캠페인 UTM 누락")
+        score = _apply_event_scores(score, reason_parts, lead_events, recent_cutoff)
+        score = _apply_conversion_scores(score, reason_parts, lead_conversions)
+        score = _apply_profile_scores(score, reason_parts, lead)
+        score = _apply_campaign_scores(score, reason_parts, campaign)
 
         score = max(0, min(100, int(score)))
         grade = grade_score(score)

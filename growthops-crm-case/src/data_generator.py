@@ -1,6 +1,6 @@
 import pandas as pd
 
-from config import CAMPAIGNS_FILE, CONVERSIONS_FILE, EVENTS_FILE, LEADS_FILE, RAW_DATA_DIR
+from config import CAMPAIGNS_FILE, CONVERSIONS_FILE, CSV_ENCODING, EVENTS_FILE, LEADS_FILE, RAW_DATA_DIR
 
 
 def generate_dummy_data() -> None:
@@ -77,7 +77,7 @@ def generate_dummy_data() -> None:
         columns=["conversion_id", "lead_id", "campaign_id", "conversion_type", "conversion_time", "amount"],
     )
 
-    campaigns.to_csv(CAMPAIGNS_FILE, index=False)
-    leads.to_csv(LEADS_FILE, index=False)
-    events.to_csv(EVENTS_FILE, index=False)
-    conversions.to_csv(CONVERSIONS_FILE, index=False)
+    campaigns.to_csv(CAMPAIGNS_FILE, index=False, encoding=CSV_ENCODING)
+    leads.to_csv(LEADS_FILE, index=False, encoding=CSV_ENCODING)
+    events.to_csv(EVENTS_FILE, index=False, encoding=CSV_ENCODING)
+    conversions.to_csv(CONVERSIONS_FILE, index=False, encoding=CSV_ENCODING)

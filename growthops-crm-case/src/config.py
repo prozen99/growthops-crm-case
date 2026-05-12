@@ -16,3 +16,4 @@ CAMPAIGN_METRICS_FILE = PROCESSED_DATA_DIR / "campaign_metrics.csv"
 DATA_QUALITY_REPORT_FILE = PROCESSED_DATA_DIR / "data_quality_report.csv"
 
 REFERENCE_DATE = "2026-05-12"
+CSV_ENCODING = "utf-8-sig"

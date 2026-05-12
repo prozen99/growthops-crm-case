@@ -1,6 +1,6 @@
 import pandas as pd
 
-from config import CAMPAIGN_METRICS_FILE, DATA_QUALITY_REPORT_FILE, LEAD_SCORES_FILE, PROCESSED_DATA_DIR
+from config import CAMPAIGN_METRICS_FILE, CSV_ENCODING, DATA_QUALITY_REPORT_FILE, LEAD_SCORES_FILE, PROCESSED_DATA_DIR
 
 
 def save_outputs(
@@ -10,9 +10,9 @@ def save_outputs(
 ) -> None:
     """Persist processed deliverables."""
     PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
-    lead_scores.to_csv(LEAD_SCORES_FILE, index=False, encoding="utf-8-sig")
-    campaign_metrics.to_csv(CAMPAIGN_METRICS_FILE, index=False, encoding="utf-8-sig")
-    data_quality_report.to_csv(DATA_QUALITY_REPORT_FILE, index=False, encoding="utf-8-sig")
+    lead_scores.to_csv(LEAD_SCORES_FILE, index=False, encoding=CSV_ENCODING)
+    campaign_metrics.to_csv(CAMPAIGN_METRICS_FILE, index=False, encoding=CSV_ENCODING)
+    data_quality_report.to_csv(DATA_QUALITY_REPORT_FILE, index=False, encoding=CSV_ENCODING)
 
 
 def print_summary(raw_lead_count: int, lead_scores: pd.DataFrame, data_quality_report: pd.DataFrame) -> None:

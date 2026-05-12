@@ -73,7 +73,7 @@ def validate_data(
 
     for lead_id, group in events.dropna(subset=["event_time"]).groupby("lead_id"):
         sorted_times = group["event_time"].sort_values().reset_index(drop=True)
-        for start_index, start_time in enumerate(sorted_times):
+        for start_time in sorted_times:
             window_count = (sorted_times.between(start_time, start_time + pd.Timedelta(minutes=10))).sum()
             if window_count >= 15:
                 campaign_id = group.iloc[0]["campaign_id"]

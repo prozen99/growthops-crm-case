@@ -36,6 +36,7 @@ pytest
 - Manual Review leads count: 5
 - Hot leads count: 2
 - Data quality issue count: 12
+- pytest: 8 passed
 
 ## 중복 리드 제거/분리 전후 해석
 

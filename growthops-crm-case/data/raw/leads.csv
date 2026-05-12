@@ -1,4 +1,4 @@
-lead_id,email,company_name,industry,company_size,job_title,created_at,source_campaign_id
+﻿lead_id,email,company_name,industry,company_size,job_title,created_at,source_campaign_id
 L001,alice@alpha.com,Alpha SaaS,SaaS,Enterprise,CTO,2026-04-20,CAMP001
 L002,bob@betafinance.com,Beta Finance,Finance,Mid-Market,Marketing Director,2026-04-22,CAMP002
 L003,cara@clinicplus.com,Clinic Plus,Healthcare,200-999,Operations Manager,2026-04-25,CAMP003

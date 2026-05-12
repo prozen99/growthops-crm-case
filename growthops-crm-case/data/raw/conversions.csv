@@ -1,4 +1,4 @@
-conversion_id,lead_id,campaign_id,conversion_type,conversion_time,amount
+﻿conversion_id,lead_id,campaign_id,conversion_type,conversion_time,amount
 CV001,L001,CAMP001,consultation_request,2026-05-06 11:00:00,0
 CV002,L001,CAMP001,purchase,2026-05-10 16:00:00,25000
 CV003,L002,CAMP002,contract,2026-05-08 12:00:00,15000

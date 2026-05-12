@@ -1,4 +1,4 @@
-event_id,lead_id,campaign_id,event_type,event_time
+﻿event_id,lead_id,campaign_id,event_type,event_time
 E001,L001,CAMP001,email_open,2026-05-05 09:00:00
 E002,L001,CAMP001,link_click,2026-05-05 09:05:00
 E003,L001,CAMP001,landing_visit,2026-05-05 09:08:00
