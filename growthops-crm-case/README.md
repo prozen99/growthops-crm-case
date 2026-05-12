@@ -98,6 +98,7 @@ Manual Review가 아닌 리드는 기본 10점에서 시작합니다. 행동 이
 - [검증 결과 요약](docs/validation-summary.md)
 - [리드 스코어링 규칙](docs/scoring-rules.md)
 - [데이터 품질 검증 규칙](docs/data-quality-rules.md)
+- [최종 해설 보고서](docs/final-report.md)
 
 ## 9. 확장 가능성
 
