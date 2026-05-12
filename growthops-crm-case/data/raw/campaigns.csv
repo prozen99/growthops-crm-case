@@ -1,0 +1,5 @@
+campaign_id,campaign_name,channel,start_date,end_date,budget,utm_code
+CAMP001,SaaS Growth Webinar,webinar,2026-04-01,2026-05-31,15000,utm_webinar_growth
+CAMP002,Finance Paid Search,paid_ads,2026-04-10,2026-05-15,12000,utm_paid_finance
+CAMP003,Healthcare Newsletter,email,2026-03-20,2026-05-20,5000,utm_health_email
+CAMP004,Enterprise Field Event,event,2026-04-15,2026-06-01,20000,

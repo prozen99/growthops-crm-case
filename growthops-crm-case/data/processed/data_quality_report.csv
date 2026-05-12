@@ -1,0 +1,10 @@
+﻿issue_type,count,severity,sample_ids
+missing_email,1,HIGH,L005
+invalid_lead_campaign_reference,1,HIGH,L010
+invalid_event_lead_reference,1,HIGH,E010
+invalid_event_campaign_reference,1,HIGH,E011
+invalid_conversion_lead_reference,1,HIGH,CV004
+duplicate_email,2,HIGH,"L006, L007"
+duplicate_company_name,2,MEDIUM,"L008, L009"
+missing_campaign_utm_code,1,MEDIUM,CAMP004
+unknown_source_or_blank_optional_field,1,LOW,L012

@@ -1,0 +1,13 @@
+lead_id,email,company_name,industry,company_size,job_title,created_at,source_campaign_id
+L001,alice@alpha.com,Alpha SaaS,SaaS,Enterprise,CTO,2026-04-20,CAMP001
+L002,bob@betafinance.com,Beta Finance,Finance,Mid-Market,Marketing Director,2026-04-22,CAMP002
+L003,cara@clinicplus.com,Clinic Plus,Healthcare,200-999,Operations Manager,2026-04-25,CAMP003
+L004,dave@smallco.com,SmallCo,Retail,SMB,Analyst,2026-04-26,CAMP003
+L005,,No Email Inc,SaaS,Enterprise,CEO,2026-04-27,CAMP001
+L006,dup@example.com,Dup One,Finance,Mid-Market,Head of Sales,2026-04-28,CAMP002
+L007,dup@example.com,Dup Two,Finance,Mid-Market,Head of Growth,2026-04-29,CAMP002
+L008,eve@samecorp.com,Same Corp,Manufacturing,1000+,Manager,2026-04-30,CAMP004
+L009,frank@samecorp.com,Same Corp,Manufacturing,1000+,Director,2026-05-01,CAMP004
+L010,ghost@badref.com,Ghost Ref,SaaS,SMB,Founder,2026-05-02,CAMP999
+L011,bot@traffic.com,Traffic Bot LLC,SaaS,Enterprise,CTO,2026-05-03,CAMP001
+L012,nina@quiet.com,Quiet Co,,SMB,,2026-03-01,CAMP003
