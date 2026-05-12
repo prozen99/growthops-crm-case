@@ -32,6 +32,7 @@ growthops-crm-case/
   README.md
   requirements.txt
   src/
+    api.py
     main.py
     config.py
     data_generator.py
@@ -48,7 +49,11 @@ growthops-crm-case/
     validation-summary.md
     scoring-rules.md
     data-quality-rules.md
+    final-report.md
   tests/
+    conftest.py
+    test_api.py
+    test_metrics.py
     test_quality_validator.py
     test_scorer.py
 ```
@@ -93,14 +98,37 @@ Manual Review가 아닌 리드는 기본 10점에서 시작합니다. 행동 이
 - `data/processed/campaign_metrics.csv`: 캠페인별 리드 수, 유효 리드 수, Hot 리드 수, 전환 수, 전환율, 품질 이슈 수
 - `data/processed/data_quality_report.csv`: 품질 이슈 유형별 건수, 심각도, 샘플 ID
 
-## 8. 제출용 설명 문서
+## 8. 선택 기능: FastAPI 결과 조회 API
+
+이 API는 필수 파이프라인이 아니라, 생성된 CSV 산출물을 조회하기 위한 선택 확장 기능입니다. DB, 인증, 대시보드 없이 `data/processed/` 아래 CSV를 읽어 JSON으로 반환합니다.
+
+먼저 파이프라인을 실행합니다.
+
+```bash
+python src/main.py
+```
+
+API 실행:
+
+```bash
+uvicorn src.api:app --reload
+```
+
+접속 예시:
+
+- `http://127.0.0.1:8000/health`
+- `http://127.0.0.1:8000/lead-scores`
+- `http://127.0.0.1:8000/campaign-metrics`
+- `http://127.0.0.1:8000/data-quality-report`
+
+## 9. 제출용 설명 문서
 
 - [검증 결과 요약](docs/validation-summary.md)
 - [리드 스코어링 규칙](docs/scoring-rules.md)
 - [데이터 품질 검증 규칙](docs/data-quality-rules.md)
 - [최종 해설 보고서](docs/final-report.md)
 
-## 9. 확장 가능성
+## 10. 확장 가능성
 
 - FastAPI 결과 조회 API
 - 대시보드

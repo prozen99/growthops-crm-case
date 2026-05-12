@@ -9,8 +9,9 @@ def clean_data(data: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
     conversions = data["conversions"].copy()
 
     for frame in [campaigns, leads, events, conversions]:
-        for column in frame.select_dtypes(include="object").columns:
-            frame[column] = frame[column].astype(str).str.strip()
+        for column in frame.columns:
+            if pd.api.types.is_object_dtype(frame[column]) or pd.api.types.is_string_dtype(frame[column]):
+                frame[column] = frame[column].astype(str).str.strip()
 
     leads["email"] = leads["email"].str.lower()
     leads["created_at"] = pd.to_datetime(leads["created_at"], errors="coerce")
